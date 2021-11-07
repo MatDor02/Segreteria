@@ -4,7 +4,7 @@ public class Check {
 	
 	public static boolean orario(String orario) { // controlla che la stringa sia un orario
 		
-		if(orario.length <= 5) {
+		if(orario.length() <= 5) {
 			byte i = 0;
 			while (i < orario.length() && orario.charAt(i) != ':')
 				i++;
@@ -27,6 +27,17 @@ public class Check {
 			}
 		}
 		return false;
+	}
+	
+	public static boolean isEmpty(Object[] obj) {
+		
+		boolean empty = true;
+		for(Object o : obj)
+			if (o != null) {
+				empty = false;
+				break;
+			}
+		return empty;
 	}
 
 }
