@@ -5,9 +5,13 @@ public class Esame extends Materia {
 	private byte cfu;
 	private byte voto;
 	private boolean superato;
+	private GiornoEsame quando;
+	private short durata; // in minuti
 	
-	public Esame(String nomeEsame, byte crediti) {
+	public Esame(String nomeEsame, byte crediti, short tempo, GiornoEsame giorno) {
 		super(nomeEsame, crediti);
+		durata = tempo;
+		quando = giorno;
 	}
 	
 	public byte getvoto() {
@@ -26,12 +30,12 @@ public class Esame extends Materia {
 		} //altrimenti restano al valore di default, cioè voto è 0, isSuperato è false
 	}
 	
+	public short getDurata() {
+		return durata;
+	}
+	
 	public String  toString() {
-<<<<<<< HEAD
-		return "Nome: " + nome + " ---|--- " + "Numero cfu: " + cfu + " ---|--- " + "Voto: " + voto;
-=======
 		return "Nome: " + nome + " ---|--- " + "Numero crediti: " + cfu + " ---|--- " + "Voto: " + voto;
->>>>>>> otherProof
 	}
 	
 }
