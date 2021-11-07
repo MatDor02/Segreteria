@@ -32,4 +32,9 @@ public class GiornoLezione extends Giorno {
 		oraFine = orario;
 	}
 	
+	public String toString() {
+		
+		return nome + ": dalle " + oraInizio + " alle " + oraFine;
+	}
+	
 }
