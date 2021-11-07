@@ -1,2 +1,2 @@
 # Segreteria
- agile program for smrt secretariat
+ Agile program for smart secretariat
