@@ -27,7 +27,7 @@ public class Esame extends Materia {
 	}
 	
 	public String  toString() {
-		return "Nome: " + nome + " ---|--- " + "Numero crediti: " + cfu + " ---|--- " + "Votazione: " + voto;
+		return "Nome: " + nome + " ---|--- " + "Numero cfu: " + cfu + " ---|--- " + "Votazione: " + voto;
 	}
 	
 }
