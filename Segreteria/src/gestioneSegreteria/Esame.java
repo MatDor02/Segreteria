@@ -5,13 +5,13 @@ public class Esame extends Materia {
 	private byte cfu;
 	private byte voto;
 	private boolean superato;
-	private GiornoEsame quando;
+	private GiornoEsame giorno;
 	private short durata; // in minuti
 	
 	public Esame(String nomeEsame, byte crediti, short tempo, GiornoEsame giorno) {
 		super(nomeEsame, crediti);
 		durata = tempo;
-		quando = giorno;
+		this.giorno = giorno;
 	}
 	
 	public byte getvoto() {
@@ -37,5 +37,4 @@ public class Esame extends Materia {
 	public String  toString() {
 		return "Nome: " + nome + " ---|--- " + "Numero crediti: " + cfu + " ---|--- " + "Voto: " + voto;
 	}
-	
 }
