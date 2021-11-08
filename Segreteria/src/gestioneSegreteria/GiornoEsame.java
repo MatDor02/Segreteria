@@ -9,7 +9,16 @@ public class GiornoEsame extends Giorno {
 		this.data = data;
 		this.orario = orario;
 	}
-	
-	// getters e setters
-	
+
+	public nomeGiorno getNome() {
+		return nome;
+	}
+
+	public String getData() {
+		return data;
+	}
+
+	public String getOrario() {
+		return orario;
+	}
 }
