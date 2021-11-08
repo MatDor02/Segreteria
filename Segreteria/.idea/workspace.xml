@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="52cf3c83-fead-466c-bf26-c3319927a71f" name="Changes" comment="Getters in GiornoEsame" />
+    <list default="true" id="52cf3c83-fead-466c-bf26-c3319927a71f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gestioneSegreteria/GiornoEsame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gestioneSegreteria/GiornoEsame.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,7 +16,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="newProof" />
+        <entry key="$PROJECT_DIR$/.." value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -59,6 +62,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.TestMateria" />
+        <item itemvalue="Application.TestMateria" />
+        <item itemvalue="Application.TestMateria" />
       </list>
     </recent_temporary>
   </component>
@@ -98,6 +103,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="upgrade to Esame" />

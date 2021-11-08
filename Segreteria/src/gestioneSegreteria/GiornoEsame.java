@@ -21,4 +21,8 @@ public class GiornoEsame extends Giorno {
 	public String getOrario() {
 		return orario;
 	}
+
+	public void setData(String data) {
+		this.data = data;
+	}
 }
