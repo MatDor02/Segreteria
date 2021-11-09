@@ -1,6 +1,6 @@
 package segreteria;
 import java.util.Scanner;
-
+//Daniel
 public class CorsoLaurea {
 // ATTRIBUTI
 	private String nomeCorso;
@@ -149,7 +149,7 @@ public class CorsoLaurea {
 					prof = new Professore (nomeprof);
 					System.out.print("Inserire i CFU :\n-> ");
 					crediti = input.nextByte();
-					System.out.print("Inserire il nome dell'esercitatore (se c'é altrimenti premere 0):\n-> ");
+					System.out.print("Inserire il nome dell'esercitatore (se c'Ã© altrimenti premere 0):\n-> ");
 					String nomeex = input.next();
 					if (!nomeex.equals("0")) {
 						ex = new Esercitatore (nomeex);
