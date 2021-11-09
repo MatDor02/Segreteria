@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="52cf3c83-fead-466c-bf26-c3319927a71f" name="Changes" comment="Getters in GiornoEsame">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gestioneSegreteria/GiornoEsame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gestioneSegreteria/GiornoEsame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gestioneSegreteria/Esame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gestioneSegreteria/Esame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gestioneSegreteria/TestMateria.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gestioneSegreteria/TestMateria.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +47,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="project.propCompiler" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RunManager">
     <configuration name="TestMateria" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -133,6 +134,7 @@
     <MESSAGE value="upgrade to Esame" />
     <MESSAGE value="upgrade to Esame (giorno instead of quando)" />
     <MESSAGE value="Getters in GiornoEsame" />
-    <option name="LAST_COMMIT_MESSAGE" value="Getters in GiornoEsame" />
+    <MESSAGE value="setOrario" />
+    <option name="LAST_COMMIT_MESSAGE" value="setOrario" />
   </component>
 </project>

@@ -25,10 +25,9 @@ public class TestMateria {
 			
 			switch(input.nextLine().charAt(0))
 			{
-			case 's', 'S': {
-				fisica.toString();
+			case 's', 'S':
+				System.out.println(fisica);
 				break;
-			}
 			case 'o', 'O': {
 				fisica.stampaOrario();
 				break;

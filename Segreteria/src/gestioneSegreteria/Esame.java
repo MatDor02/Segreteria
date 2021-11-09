@@ -30,11 +30,7 @@ public class Esame extends Materia {
 		} //altrimenti restano al valore di default, cioè voto è 0, isSuperato è false
 	}
 	
-	public short getDurata() {
-		return durata;
-	}
-	
 	public String  toString() {
-		return "Nome: " + nome + " ---|--- " + "Numero crediti: " + cfu + " ---|--- " + "Voto: " + voto;
+		return "Data: " + giorno.getData() + "---|---" + "Nome: " + nome + " ---|--- " + "Numero crediti: " + cfu + " ---|--- " + "Voto: " + voto;
 	}
 }
