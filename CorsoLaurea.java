@@ -1,6 +1,6 @@
 package segreteria;
 import java.util.Scanner;
-//Daniel
+
 public class CorsoLaurea {
 // ATTRIBUTI
 	private String nomeCorso;
@@ -87,7 +87,7 @@ public class CorsoLaurea {
 	public boolean Ritiro (String matricola) {
 		boolean c = true;
 		do {
-			System.out.println("Sei sicuro di volerti disiscrivere da questo corso? "
+			System.out.println("Sei sicuro di voler disiscrivere lo studente da questo corso? "
 					+ "[S] o [N]");
 			String risposta;
 			switch (risposta = input.next()) {
@@ -149,7 +149,7 @@ public class CorsoLaurea {
 					prof = new Professore (nomeprof);
 					System.out.print("Inserire i CFU :\n-> ");
 					crediti = input.nextByte();
-					System.out.print("Inserire il nome dell'esercitatore (se c'Ã© altrimenti premere 0):\n-> ");
+					System.out.print("Inserire il nome dell'esercitatore (se c'é altrimenti premere 0):\n-> ");
 					String nomeex = input.next();
 					if (!nomeex.equals("0")) {
 						ex = new Esercitatore (nomeex);
@@ -233,4 +233,84 @@ public class CorsoLaurea {
 		}
 		return true;
 	}
+	
+	public void VisualizzaMaterie () {
+		System.out.println("MATERIE DEL CORSO DI " + this.nomeCorso + ":");
+		for (byte i = 0; i < ins_def.length; i++) {
+			if (ins_def[i] != null) System.out.println(ins_def[i]);
+		}
+		for (byte i = 0; i < ins_scl.length; i++) {
+			if (ins_scl[i] != null) System.out.println(ins_scl[i]);
+		}
+	}
+	
+// MENU'
+	public void menu_corso () {
+		System.out.println("CORSO DI " + this.nomeCorso + "[anno accademico 2021/2022]\n" + this.tipo);
+		boolean f = true;
+		do {
+			System.out.println("COMANDI GESTIONE STUDENTI: ");
+			System.out.println("I) Iscrivi uno studente a questo corso");
+			System.out.println("C) Cerca uno studente tra quelli iscritti");
+			System.out.println("R) Ritira uno studente");
+			System.out.println("V) Visualizza gli studenti iscritti al corso");
+			System.out.println("L) Laurea uno studente");
+			System.out.println("U) Visualizza gli studenti laureati al corso");
+			System.out.println("O) Cerca uno studente tra quelli laureati");
+			System.out.println("COMANDI GESTIONE MATERIE:");
+			System.out.println("Y) Inserisci un insegnamento di base");
+			System.out.println("G) Rimuovi un insegnamento di base");
+			System.out.println("J) Inserisci un insegnamento a scelta");
+			System.out.println("X) Rimuovi un insegnamento a scelta");
+			System.out.println("M) Visualizza le materie del corso");
+			System.out.println("\nE) Torna al menù precedente");
+			
+			String ris;
+			switch (ris) {
+				case "i", "I": {
+					System.out.println("Inserisci il nome e l'anno a cui iscrivere lo studente:\n-> ");
+					String nome = input.next();
+					Iscrizione (nome);	
+				}
+				break;
+				case "c", "C": {
+					System.out.println("Inserisci la matricola dello studente\n-> ");
+					String mat = input.next();
+					CercaStudente (mat, studenti);
+				}
+				break;
+				case "r", "R": {
+					System.out.println("Inserisci la matricola dello studente\n-> ");
+					String matr = input.next();
+					Ritiro (matr);
+				}
+				break;
+				case "v", "V": VisualizzaStudenti(); break;
+				case "l", "L": {
+					System.out.println("Inserisci la matricola dello studente\n-> ");
+					String matri = input.next();
+					System.out.println("Inserisci il voto finale da dare allo studente\n-> ");
+					byte anno = input.nextByte();
+					LaureaStudente (matri, studenti);	
+				}
+				break;
+				case "u", "U": VisualizzaLaureati(); break;
+				case "o", "O": {
+					System.out.println("Inserisci la matricola dello studente laureato\n-> ");
+					String matric = input.next();
+					CercaStudente (matric, laureati);
+				}
+				break;
+				case "y", "Y": In_ins_def(); break;
+				case "g", "G": Out_ins_def(); break;
+				case "j", "J": In_ins_scl(); break;
+				case "x", "X": Out_ins_scl(); break;
+				case "m", "M": VisualizzaMaterie(); break;
+				case "e", "E": f = false; break;
+				default: System.out.println("Utilizza solo i caratteri consentiti!\n");
+			}	
+		} while (f);
+		System.out.println("[---]");
+	}
+	
 }
