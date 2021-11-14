@@ -1,8 +1,8 @@
-package gestioneSegreteria;
+package Insegnamenti;
 
 import java.util.*;
 
-import gestioneSegreteria.Giorno.nomeGiorno;
+import Insegnamenti.Giorno.nomeGiorno;
 
 public class TestMateria {
 
@@ -50,7 +50,7 @@ public class TestMateria {
 			System.out.println("\na) Aggiungi giorno");
 			System.out.println("r) Rimuovi giorno");
 			System.out.println("m) Modifica giorno");
-			System.out.println("e) Torna al menù della materia");
+			System.out.println("e) Torna al menï¿½ della materia");
 			System.out.print("Inserisci una lettera: ");
 			
 			switch(input.nextLine().charAt(0))
@@ -61,7 +61,7 @@ public class TestMateria {
 				if(insegnamento.aggiungiGiorno(day, oraInizio, oraFine))
 					System.out.println("\nGiorno di lezione aggiunto!");
 				else
-					System.out.println("\nInsegnamento già presente ogni giorno. Lezione non aggiunta!");
+					System.out.println("\nInsegnamento giï¿½ presente ogni giorno. Lezione non aggiunta!");
 				break;
 			}
 			case 'r', 'R': {

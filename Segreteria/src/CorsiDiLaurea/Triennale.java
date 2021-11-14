@@ -1,4 +1,6 @@
-package gestioneSegreteria;
+package CorsiDiLaurea;
+
+import CorsiDiLaurea.CorsoLaurea;
 
 public class Triennale extends CorsoLaurea {
 	private String tipo = "Corso Triennale";

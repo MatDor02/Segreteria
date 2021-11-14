@@ -1,7 +1,9 @@
-package gestioneSegreteria;
+package CorsiDiLaurea;
+
+import CorsiDiLaurea.CorsoLaurea;
 
 public class TestCorsoLaurea {
-	static CorsoLaurea [] corsi = new CorsoLaurea[1];
+	static CorsoLaurea[] corsi = new CorsoLaurea[1];
 	public static CorsoLaurea [] getcorsi () {
 		return corsi;
 	}

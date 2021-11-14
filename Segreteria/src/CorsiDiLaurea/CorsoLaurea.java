@@ -1,4 +1,7 @@
-package gestioneSegreteria;
+package CorsiDiLaurea;
+
+import Insegnamenti.*;
+import Persone.*;
 import java.util.Scanner;
 
 public class CorsoLaurea {

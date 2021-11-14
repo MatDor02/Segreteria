@@ -1,4 +1,4 @@
-package gestioneSegreteria;
+package Insegnamenti;
 
 public class GiornoLezione extends Giorno {
 	

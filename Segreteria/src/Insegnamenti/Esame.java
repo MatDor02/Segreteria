@@ -1,4 +1,4 @@
-package gestioneSegreteria;
+package Insegnamenti;
 
 public class Esame extends Materia {
 
@@ -27,7 +27,7 @@ public class Esame extends Materia {
 		if(valutazione >= 18) {
 			voto = valutazione;
 			superato = true;
-		} //altrimenti restano al valore di default, cioè voto è 0, isSuperato è false
+		} //altrimenti restano al valore di default, cioï¿½ voto ï¿½ 0, isSuperato ï¿½ false
 	}
 	
 	public String  toString() {
