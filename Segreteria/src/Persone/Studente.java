@@ -1,13 +1,13 @@
 package Persone;
 import java.util.*;
 import Insegnamenti.*;
-import CorsoDiLaurea.*;
+import CorsiDiLaurea.*;
 
 public class Studente extends Persona{
 
 //Attributi
 	private String matricola = "S";
-	public byte def = CorsoLaurea.get_ins_def.length + CorsoLaurea.get_ins_scl.length;
+	public byte def = CorsoLaurea.get_ins_def().length + CorsoLaurea.get_ins_scl().length;
 	private Materia[] pianoStudi = new Materia[def];
 	private static byte Contatore = 0;
 	private byte CFU_acquisiti;
@@ -39,7 +39,7 @@ public class Studente extends Persona{
 	public byte get_anno() {return anno;}
 
 //Setter
-	public byte set_voto_finale(byte voto_finale) {this.voto_finale = voto_finale;}
+	public void set_voto_finale(byte voto_finale) {this.voto_finale = voto_finale;}
 	
 //Metodi
 	public boolean pianoStudi()
@@ -89,8 +89,8 @@ public class Studente extends Persona{
 				pianoStudi[i] = a;
 				return true;
 			}
-			return false;
 		}
+		return false;
 	}
 	
 	public boolean rimuoviMaterie()
@@ -107,23 +107,23 @@ public class Studente extends Persona{
 				pianoStudi[p] = null;
 				return true;
 			}
-			return false;
 		}
+		return false;
 	}
 	
-	public String visualizzaEsami()
+	public void visualizzaEsami()
 	{
 		System.out.println("Stampa lista esami\n");
 		byte i = 0;
 		byte somma_voti = 0;
 		while(i<Esami.length && Esami[i] != null) {
 			if(Esami[i].isSuperato())
-				System.out.println(i + " esame: " + Esami[i] + " - voto: " + Esami[i].get_voto());
+				System.out.println(i + " esame: " + Esami[i] + " - voto: " + Esami[i].getVoto());
 			i++;
 		}
 		
 		for(int t = 0; t<Esami.length; t++)
-			somma_voti += Esami[i].get_voto();
+			somma_voti += Esami[i].getVoto();
 		
 		System.out.println("Media voti: " + somma_voti/Esami.length);
 	}
@@ -132,7 +132,7 @@ public class Studente extends Persona{
 	{
 		if(!exam.isSuperato())
 		{	
-			exam.setVoto(voto);
+			exam.setVoto((byte)voto);
 			CFU_acquisiti += exam.getCfu();
 			return true;
 		}

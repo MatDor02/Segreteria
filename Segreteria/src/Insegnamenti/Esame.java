@@ -14,7 +14,7 @@ public class Esame extends Materia {
 		this.giorno = giorno;
 	}
 	
-	public byte getvoto() {
+	public byte getVoto() {
 		return voto;
 	}
 	

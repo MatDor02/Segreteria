@@ -21,7 +21,6 @@ public class Materia {
 		nome = nomeMateria;
 		cfu = crediti;
 		this.prof = prof;
-		sito = sitoCorso;
 	}
 	
 	public Materia(String nomeMateria, byte crediti, Professore prof, Esercitatore coProf) {
@@ -29,7 +28,6 @@ public class Materia {
 		cfu = crediti;
 		this.prof = prof;
 		this.coProf = coProf;
-		sito = sitoCorso;
 	}
 	
 	public String getNome() {

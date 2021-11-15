@@ -178,7 +178,7 @@ public class CorsoLaurea {
 			return true;
 		}
 
-		public boolean In_ins_scl () {
+		public boolean In_ins_scl() {
 			if (vett_pieno(ins_scl)) {
 				System.out.println("Numero massimo di materie raggiunto!");
 				return false;
