@@ -2,13 +2,13 @@ package Insegnamenti;
 
 public class Giorno {
 	
-	protected enum nomeGiorno {
+	public enum nomeGiorno {
 		
 		Lunedi, Martedi, Mercoledi, Giovedi, Venerdi, Sabato, Domenica;
 		
 		// Returns the enumeration constant in position n in its delcaration.
 		// The initial enum constant (lunedi) is in position 0.
-		protected static nomeGiorno getPosition(byte n) {
+		public static nomeGiorno getPosition(byte n) {
 			for(nomeGiorno g : nomeGiorno.values())
 				if (g.ordinal() == n)
 					return g;

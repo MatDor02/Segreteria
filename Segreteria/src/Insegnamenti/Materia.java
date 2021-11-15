@@ -2,14 +2,14 @@ package Insegnamenti;
 
 import Insegnamenti.Check;
 import Insegnamenti.Giorno.nomeGiorno;
+import Persone.*;
 
 public class Materia {
 	
 	protected String nome;
 	protected byte cfu;
-	//protected Professore prof;
-	//protected Esercitatore coProf;
-	private String sito;
+	protected Professore prof;
+	protected Esercitatore coProf;
 	private GiornoLezione[] orario = new GiornoLezione[5];
 	
 	public Materia(String nomeMateria, byte crediti) {
@@ -17,14 +17,14 @@ public class Materia {
 		cfu = crediti;
 	}
 	
-	public Materia(String nomeMateria, byte crediti, Professore prof, String sitoCorso) {
+	public Materia(String nomeMateria, byte crediti, Professore prof) {
 		nome = nomeMateria;
 		cfu = crediti;
 		this.prof = prof;
 		sito = sitoCorso;
 	}
 	
-	public Materia(String nomeMateria, byte crediti, Professore prof, Esercitatore coProf, String sitoCorso) {
+	public Materia(String nomeMateria, byte crediti, Professore prof, Esercitatore coProf) {
 		nome = nomeMateria;
 		cfu = crediti;
 		this.prof = prof;
@@ -138,10 +138,10 @@ public class Materia {
 		String daRes = nome + ", " + cfu + " CFU";
 		
 		if(prof != null)
-			daRes.concat(", prof: " + prof.nome);
+			daRes.concat(", prof: " + prof.getNome());
 		
 		if(coProf != null)
-			daRes.concat(", esercitatore: " + coProf.nome);
+			daRes.concat(", esercitatore: " + coProf.getNome());
 		
 		return daRes;
 		
