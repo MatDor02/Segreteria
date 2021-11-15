@@ -1,21 +1,26 @@
-package segreteria;
+
 import java.util.*;
+
+import Persone.*;
+import Insegnamenti.*;
+import CorsiDiLaurea.*;
 
 public class MAIN {
 
-	CorsoLaurea[] Corsi;
+	public static CorsoLaurea[] corsi;
 	
-	public boolean ins_corso(CorsoLaurea[] corsi)
+	public static boolean ins_corso(CorsoLaurea[] corsi)
 	{
+		Scanner input = new Scanner(System.in);
 		if(CorsoLaurea.vett_pieno(corsi))
 		{
 			System.out.println("Non è possibile aggiungere corsi si laurea!");
 			return false;
 		}
-			
-		for(int k = 0, boolean c = true; k<Corsi.length && c; k++)
+		boolean c = true;
+		for(int k = 0; k<corsi.length && c; k++)
 		{
-			if(Corsi[k] == null)
+			if(corsi[k] == null)
 			{	
 				System.out.println("Inserire il nome corso di laurea: ");
 				String nome = input.next();
@@ -26,18 +31,20 @@ public class MAIN {
 				byte ins_b = input.nextByte();
 				System.out.println("Inserire il numero di insegnamenti a scelta: ");
 				byte ins_s = input.nextByte();
-				Corsi[k] = new CorsoLaurea(nome, cfu, ins_b, ins_s);
+				corsi[k] = new CorsoLaurea(nome, cfu, ins_b, ins_s);
 				c =false;
 			}
 		}
 		return true;
 	}
 	
-	public boolean rimuovi_corso()
+	public static boolean rimuovi_corso()
 	{
+		Scanner input = new Scanner(System.in);
+
 		byte t = 0;
 		boolean c = true;
-		while(t<corsi.length && c)
+		while(t < corsi.length && c)
 		{
 			if(corsi[t] == null)
 				t++;
@@ -57,20 +64,20 @@ public class MAIN {
 			nome = input.next();
 			byte i = 0;
 			boolean u = true;
-			while(i<Corsi.length && u)
+			while(i<corsi.length && u)
 			{
-				if(Corsi[i] == null)
+				if(corsi[i] == null)
 					i++;
 				else
-					if(Corsi[i].get_nomeCorso.equals(nome))
+					if(corsi[i].get_nomeCorso().equals(nome))
 					{
-						Corsi[i] = null;
+						corsi[i] = null;
 						u = false;
 					}					
 					else
 						i++;
 			}
-			if(i == Corsi.length)
+			if(i == corsi.length)
 				System.out.println("Nessun corso corrisponde al nome inserito!");
 			else
 				r = false;
@@ -89,8 +96,8 @@ public class MAIN {
 			System.out.println("Benvenuto/a!");
 			System.out.println("Qunati corsi può ospitare l'ateneo?");
 			n_corsi = input.nextByte();
-			Corsi = new CorsoLaurea[n_corsi];
-			ins_corso(Corsi);
+			corsi = new CorsoLaurea[n_corsi];
+			ins_corso(corsi);
 			
 			System.out.println("MENU COMANDI:");
 			System.out.println("A) aggiungi corso");
@@ -103,29 +110,29 @@ public class MAIN {
 			switch(scelta)
 			{
 			case "A", "a":
-					ins_corso();
+					ins_corso(corsi);
 					break;
 			case "E", "e":
 					rimuovi_corso();
 					break;
 			case "M", "m":
 					System.out.println("Corsi: ");
-					for(byte n : Corsi)
+					for(CorsoLaurea n : corsi)
 						System.out.println(n);
 					System.out.println("Scrivere il nome del corso a cui accedere: ");
 					String risposta = input.next();
 					byte w = 0;
 					boolean z = true;
 					
-					while(w<Corsi.length && z)
+					while(w<corsi.length && z)
 					{
-						if(Corsi[w].get_nomeCorso().equals(risposta))
+						if(corsi[w].get_nomeCorso().equals(risposta))
 							z = false;
 					}
-					if(w == Corsi.length)
+					if(w == corsi.length)
 						System.out.println("Non esiste alcun corso con il nome inserito!");
 					else 
-						Corsi[w].menu_corso();
+						corsi[w].menu_corso();
 					break;
 			case "U", "u":
 					t = false;
