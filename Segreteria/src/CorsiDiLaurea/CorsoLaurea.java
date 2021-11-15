@@ -1,7 +1,4 @@
-package CorsiDiLaurea;
-
-import Insegnamenti.*;
-import Persone.*;
+package segreteria;
 import java.util.Scanner;
 
 public class CorsoLaurea {
@@ -15,6 +12,9 @@ public class CorsoLaurea {
 	private Studente [] laureati = new Studente [200];
 	private Studente [] fuoricorso = new Studente [200];
 	Scanner input = new Scanner (System.in);
+// ATTRIBUTI ORARIO	
+	private static nomeGiorno day;
+	private static String oraInizio, oraFine;
 //COSTRUTTORE	
 	public CorsoLaurea (String nomeCorso, byte min_cfu, byte n_def, byte n_scl) {
 		this.nomeCorso = nomeCorso;
@@ -152,7 +152,7 @@ public class CorsoLaurea {
 					prof = new Professore (nomeprof);
 					System.out.print("Inserire i CFU :\n-> ");
 					crediti = input.nextByte();
-					System.out.print("Inserire il nome dell'esercitatore (se c'� altrimenti premere 0):\n-> ");
+					System.out.print("Inserire il nome dell'esercitatore (se c'é altrimenti premere 0):\n-> ");
 					String nomeex = input.next();
 					if (!nomeex.equals("0")) {
 						ex = new Esercitatore (nomeex);
@@ -236,7 +236,7 @@ public class CorsoLaurea {
 		}
 		return true;
 	}
-	
+
 	public void VisualizzaMaterie () {
 		System.out.println("MATERIE DEL CORSO DI " + this.nomeCorso + ":");
 		for (byte i = 0; i < ins_def.length; i++) {
@@ -245,6 +245,106 @@ public class CorsoLaurea {
 		for (byte i = 0; i < ins_scl.length; i++) {
 			if (ins_scl[i] != null) System.out.println(ins_scl[i]);
 		}
+	}	
+
+// METODI ORARIO MATERIE	
+	
+public static void menuOrario(Materia insegnamento) {
+		
+		Scanner input = new Scanner(System.in);
+		
+		do {
+			insegnamento.stampaOrario();
+			System.out.println("\na) Aggiungi giorno");
+			System.out.println("r) Rimuovi giorno");
+			System.out.println("m) Modifica giorno");
+			System.out.println("e) Torna al menù della materia");
+			System.out.print("Inserisci una lettera: ");
+			
+			switch(input.nextLine().charAt(0))
+			{
+			case 'a', 'A': {
+				scegliGiornoEOra();
+				
+				if(insegnamento.aggiungiGiorno(day, oraInizio, oraFine))
+					System.out.println("\nGiorno di lezione aggiunto!");
+				else
+					System.out.println("\nInsegnamento giù presente ogni giorno. Lezione non aggiunta!");
+				break;
+			}
+			case 'r', 'R': {
+				nomeGiorno day = scegliGiorno();
+				if(insegnamento.rimuoviGiorno(day))
+					System.out.println("\nGiorno di lezione rimosso!");
+				else
+					System.out.println("\nNessuna lezione il " + day + "!");
+				break;
+			}
+			case 'm', 'M': {
+				scegliGiornoEOra();
+				
+				if(insegnamento.modificaGiorno(day, oraInizio, oraFine))
+					System.out.println("\nOrario modifiato!");
+				else {
+					System.out.println("\nNessuna lezione il " + day + "!");
+					System.out.print("Aggiungerne una con giorno e orari appena inseriti? [s/n]: ");
+					if(input.nextLine().charAt(0) == 's' && insegnamento.aggiungiGiorno(day, oraInizio, oraFine))
+						System.out.println("Giorno di lezione aggiunto!");
+				}
+				break;
+			}
+			case 'e', 'E': return;
+			default:
+				System.out.println("\nInput non valido!");
+			}
+		} while(true);
+	}
+
+	public static nomeGiorno scegliGiorno() {
+		
+		Scanner input = new Scanner(System.in);
+		byte nGiorno = 1;
+		do {
+			if(nGiorno < 1 || nGiorno > 5)
+				System.out.println("\nInput non valido!");
+			
+			System.out.println("\nChe giorno? ");
+			System.out.println("1) Lunedi");
+			System.out.println("2) Martedi");
+			System.out.println("3) Mercoledi");
+			System.out.println("4) Giovedi");
+			System.out.println("5) Venerdi");
+			System.out.print("Inserisci il numero del giorno feriale: ");
+			
+			if(input.hasNextByte()) {
+				nGiorno = input.nextByte();
+				input.nextLine(); // raccolgo l'invio
+			}
+			else {
+				input.nextLine();
+				nGiorno = 0; //cosi reinizia il ciclo ed entro nel primo if
+			}
+		} while(nGiorno < 1 || nGiorno > 5);
+		
+		return nomeGiorno.getPosition((byte)(nGiorno - 1));
+	}
+	
+	public static void scegliGiornoEOra() {
+		Scanner input = new Scanner(System.in);
+		
+		day = scegliGiorno();
+		do {
+			System.out.print("\nOrario di inizio [hh:mm]: ");
+			oraInizio = input.nextLine();
+			if(!Check.orario(oraInizio))
+				System.out.println("\nFormato orario non valido, riprova!");
+		} while(!Check.orario(oraInizio));
+		do {
+			System.out.print("\nOrario di fine [hh:mm]: ");
+			oraFine = input.nextLine();
+			if(!Check.orario(oraFine))
+				System.out.println("\nFormato orario non valido, riprova!");
+		} while(!Check.orario(oraFine));
 	}
 	
 // MENU'
@@ -265,8 +365,9 @@ public class CorsoLaurea {
 			System.out.println("G) Rimuovi un insegnamento di base");
 			System.out.println("J) Inserisci un insegnamento a scelta");
 			System.out.println("X) Rimuovi un insegnamento a scelta");
+			System.out.println("W) Modifica orario settimanale di una materia");
 			System.out.println("M) Visualizza le materie del corso");
-			System.out.println("\nE) Torna al men� precedente");
+			System.out.println("\nE) Torna al menù precedente");
 			
 			String ris;
 			switch (ris) {
@@ -308,6 +409,16 @@ public class CorsoLaurea {
 				case "g", "G": Out_ins_def(); break;
 				case "j", "J": In_ins_scl(); break;
 				case "x", "X": Out_ins_scl(); break;
+				case "w", "W": {
+					byte cont = 1;
+					for (byte x = 0; x < ins_def.length; x++) System.out.println(cont++ + ") " + ins_def[x].getNome());
+					for (byte x = 0; x < ins_scl.length; x++) System.out.println(cont++ + ") " + ins_scl[x].getNome());
+					System.out.println("Inserisci il numero corrispondente alla materia a cui si vuole accedere\n-> ");
+					byte ris = input.nextByte();
+					if (ris > (ins_def.length + ins_scl.length)) System.out.println("Utilizza solo numeri <= di "+ cont);
+					else if (ris < ins_def.length) menuOrario(ins_def[ris-1]);
+						else menuOrario(ins_scl[ris - ins_def.length -1]);	
+				}
 				case "m", "M": VisualizzaMaterie(); break;
 				case "e", "E": f = false; break;
 				default: System.out.println("Utilizza solo i caratteri consentiti!\n");
