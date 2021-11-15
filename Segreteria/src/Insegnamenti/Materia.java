@@ -1,6 +1,7 @@
-package gestioneSegreteria;
+package Insegnamenti;
 
-import gestioneSegreteria.Giorno.nomeGiorno;
+import Insegnamenti.Check;
+import Insegnamenti.Giorno.nomeGiorno;
 
 public class Materia {
 	
@@ -70,7 +71,7 @@ public class Materia {
 		return false;
 	}
 	
-	// modifica l'orario di un giorno già presente
+	// modifica l'orario di un giorno giï¿½ presente
 	public boolean modificaGiorno(nomeGiorno daMod, String newBeginning, String newEnd) {
 		
 		for(byte b = 0; b < orario.length && orario[b] != null; b++)
