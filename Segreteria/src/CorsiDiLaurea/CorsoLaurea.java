@@ -21,6 +21,7 @@ public class CorsoLaurea {
 	private Studente[] laureati = new Studente[200];
 	private Studente[] fuoricorso = new Studente[200];
 	// TODO private Steudente studLoggato;
+	// 		private Professore profLoggato;
 	Scanner input = new Scanner(System.in);
 	// ATTRIBUTI ORARIO
 	private static nomeGiorno day;
@@ -479,10 +480,14 @@ public class CorsoLaurea {
 		}
 
 	public void menuStudente() {
-		if(!login())
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Inserisci la matricola: ");
+		String matricola = input.nextLine();
+
+		if(!login(matricola))
 			System.out.println("Tentativi esauriti, login non effettuato!");
 		else {
-			Scanner input = new Scanner(System.in);
 			byte scelta = 99;
 
 			do {
@@ -501,6 +506,7 @@ public class CorsoLaurea {
 					continue;
 				}
 				input.nextLine();// prendo l'invio dopo il netByte andato a buon fine
+
 				if (scelta < 0 || scelta > 4)
 					System.out.println("\nInserisci un numero compreso tra 0 e 4");
 				else {
@@ -526,10 +532,49 @@ public class CorsoLaurea {
 		}
 	}
 
-	private boolean login() {
-		// TODO: controlliamo matricola + password
-		// 		Assegnamo a "studLoggto" lo studente con le credenziali corrispondenti
+	private boolean login(String matricola) {
+		// TODO: controlliamo password (basandoci sulla matricola inserita)
+		// 		Se studente, assegnamo a "studLoggto" lo studente con le credenziali corrispondenti
+		//		Se professore, assegnamo a profLoggato
 	}
 
+	private void menuProf() {
+		Scanner input = new Scanner(System.in);
 
+		System.out.print("Inserisca matricola: ");
+		String matricola = input.nextLine();
+
+		if(!login(matricola))
+			System.out.println("Tentativi esauriti, login non effettuato!");
+		else {
+			byte scelta = 99;
+			do {
+				System.out.println("Cosa desidera fare?");
+				System.out.println("1) Aggiungere un esame");
+				System.out.println("0) Uscire");
+				System.out.print("Numero corrispondente alla scelta: ");
+				try {
+					scelta = input.nextByte();
+				} catch (InputMismatchException e) {
+					System.out.println("\nHai inserito '" + input.nextLine() + "', che non è un numero.");
+					continue;
+				}
+				input.nextLine();// prendo l'invio dopo il netByte andato a buon fine
+
+				if(scelta < 0 || scelta > 1)
+					System.out.println("Inserisci numeri compresi tra 0 e 1");
+				else {
+					switch (scelta) {
+						case 0:
+							break;
+						case 1: {
+
+						}
+					}
+				}
+
+			} while (scelta != 0);
+		}
 	}
+
+}
