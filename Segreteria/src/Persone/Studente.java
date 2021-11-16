@@ -12,7 +12,10 @@ public class Studente extends Persona{
 	private static byte Contatore = 0;
 	private byte CFU_acquisiti;
 	//private Materia[] Esami = new Materia[def];
-	private Esame[] Esami = new Esame[def];
+	private Esame[] Esami= new Esame[def];
+	// TODO private Esame[] EsamiSuperati = new Esame[def]
+	// 		private Esame[] EsamiPrenotati = new Esame[def];
+	// 		private String pwd;
 	private byte voto_finale;
 	private byte anno;
 	
@@ -127,6 +130,8 @@ public class Studente extends Persona{
 		
 		System.out.println("Media voti: " + somma_voti/Esami.length);
 	}
+
+	// TODO public void prenotaEsame(Esame daPrenotare) --> aggiunge daPrenotare all'array EsamiPrenotati
 	
 	public boolean Promuovi(Esame exam, int voto)
 	{
@@ -138,7 +143,6 @@ public class Studente extends Persona{
 		}
 		return false; 
 	}
-
 	
 	@Override
 	public String toString() {

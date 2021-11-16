@@ -3,6 +3,7 @@ package Insegnamenti;
 import Insegnamenti.Check;
 import Insegnamenti.Giorno.nomeGiorno;
 import Persone.*;
+import
 
 public class Materia {
 	
@@ -11,6 +12,7 @@ public class Materia {
 	protected Professore prof;
 	protected Esercitatore coProf;
 	private GiornoLezione[] orario = new GiornoLezione[5];
+	private Vect
 	
 	public Materia(String nomeMateria, byte crediti) {
 		nome = nomeMateria;

@@ -27,10 +27,11 @@ public class Esame extends Materia {
 		if(valutazione >= 18) {
 			voto = valutazione;
 			superato = true;
-		} //altrimenti restano al valore di default, cio� voto � 0, isSuperato � false
+		} //altrimenti restano al valore di default, cioe' voto e' 0, isSuperato e' false
 	}
 	
 	public String  toString() {
-		return "Data: " + giorno.getData() + "---|---" + "Nome: " + nome + " ---|--- " + "Numero crediti: " + cfu + " ---|--- " + "Voto: " + voto;
+		return "Data: " + giorno.getData() + "---|---" + "Nome: " + nome + " ---|--- " +
+				"Numero crediti: " + cfu + " ---|--- " + "Voto: " + voto;
 	}
 }

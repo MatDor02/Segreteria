@@ -1,8 +1,14 @@
 package CorsiDiLaurea;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import Insegnamenti.*;
 import Insegnamenti.Giorno.nomeGiorno;
 import Persone.*;
+
+import javax.sound.midi.Soundbank;
 
 public class CorsoLaurea {
 	// ATTRIBUTI
@@ -14,6 +20,7 @@ public class CorsoLaurea {
 	private Materia[] ins_scl;
 	private Studente[] laureati = new Studente[200];
 	private Studente[] fuoricorso = new Studente[200];
+	// TODO private Steudente studLoggato;
 	Scanner input = new Scanner(System.in);
 	// ATTRIBUTI ORARIO
 	private static nomeGiorno day;
@@ -363,10 +370,19 @@ public class CorsoLaurea {
 		}
 
 // MENU'
+		// TODO: per prima cosa leggiamo da file (CON SERIALIZZAZIONE) tutti gli attributi di questa classe.
+		// 		Al termine della funzione scriviamo gli attributi sui relativi file
 		public void menu_corso () {
 			System.out.println("CORSO DI " + this.nomeCorso + "[anno accademico 2021/2022]\n" + this.tipo);
 			boolean f = true;
 			do {
+				// TODO 1) sei uno studente? --> menu studente (gestione esami passati e futuri, stampa media, ecc.)
+				//		2) sei un professore? --> menu professore (seleziona una materia che insegna, aggiunge nuovi appelli)
+				//		3) sei un segretario? --> menu_corso() (gestisci studenti, modifica insegnamenti, orari, ...)
+				//		4) esercitatore? --> menu_sfigato()
+				//		5) goldrake? --> affila il ferro
+				//		6) e tanto altro ancora (consultare la documentazione)
+				//		......................
 				System.out.println("COMANDI GESTIONE STUDENTI: ");
 				System.out.println("I) Iscrivi uno studente a questo corso");
 				System.out.println("C) Cerca uno studente tra quelli iscritti");
@@ -461,5 +477,59 @@ public class CorsoLaurea {
 			} while (f);
 			System.out.println("[---]");
 		}
+
+	public void menuStudente() {
+		if(!login())
+			System.out.println("Tentativi esauriti, login non effettuato!");
+		else {
+			Scanner input = new Scanner(System.in);
+			byte scelta = 99;
+
+			do {
+				System.out.println("\nCosa vuoi fare?");
+				System.out.println("1) Stampa esami superati");
+				System.out.println("2) Prenota un esame");
+				System.out.println("3) Stampa media voti");
+				System.out.println("4) Visualizza orario di una materia");
+				System.out.println("0) Esci");
+				System.out.print("Inserisci il numero corrispondente alla tua scelta: ");
+
+				try {
+					scelta = input.nextByte();
+				} catch (InputMismatchException e) {
+					System.out.println("\nHai inserito '" + input.nextLine() + "', che non è un numero.");
+					continue;
+				}
+				input.nextLine();// prendo l'invio dopo il netByte andato a buon fine
+				if (scelta < 0 || scelta > 4)
+					System.out.println("\nInserisci un numero compreso tra 0 e 4");
+				else {
+					switch (scelta) {
+						case 0:
+							break;
+						case 1: {
+
+						}
+						case 2: {
+
+						}
+						case 3: {
+
+						}
+						case 4: {
+
+						}
+					}
+				}
+
+			} while (scelta != 0);
+		}
+	}
+
+	private boolean login() {
+		// TODO: controlliamo matricola + password
+		// 		Assegnamo a "studLoggto" lo studente con le credenziali corrispondenti
+	}
+
 
 	}

@@ -85,6 +85,11 @@ public class MAIN {
 		
 		return true;
 	}
+
+	// TODO public void menuStudente()
+	// 		login (scorro vettore studenti finchè non combaciano credenziali)
+	// 		opzioni: prenotaEsame (stampa le materie del piano di studi, ne fa scegliere una e stampa i relativi appelli.
+	//							   Selezionare quello a cui iscriversi e passarlo a studenteAttuale.prenotaEsame())
 	
 	public static void main(String[] args) {
 		
