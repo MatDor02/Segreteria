@@ -1,5 +1,7 @@
 package Insegnamenti;
 
+import java.util.Scanner;
+
 public class Giorno {
 	
 	public enum nomeGiorno {
@@ -21,9 +23,37 @@ public class Giorno {
 	public Giorno(nomeGiorno nome) {
 		this.nome = nome;
 	}
-	
+
+	public static nomeGiorno scegliGiorno() {
+
+		Scanner input = new Scanner(System.in);
+		byte nGiorno = 1;
+		do {
+			if(nGiorno < 1 || nGiorno > 5)
+				System.out.println("\nInput non valido!");
+
+			System.out.println("\nChe giorno? ");
+			System.out.println("1) Lunedi");
+			System.out.println("2) Martedi");
+			System.out.println("3) Mercoledi");
+			System.out.println("4) Giovedi");
+			System.out.println("5) Venerdi");
+			System.out.print("Inserisci il numero del giorno feriale: ");
+
+			if(input.hasNextByte()) {
+				nGiorno = input.nextByte();
+				input.nextLine(); // raccolgo l'invio
+			}
+			else {
+				input.nextLine();
+				nGiorno = 0; //cosi reinizia il ciclo ed entro nel primo if
+			}
+		} while(nGiorno < 1 || nGiorno > 5);
+
+		return nomeGiorno.getPosition((byte)(nGiorno - 1));
+	}
+
 	public String toString() {
 		return nome + "";
 	}
-	
 }

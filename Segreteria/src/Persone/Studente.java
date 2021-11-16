@@ -15,7 +15,7 @@ public class Studente extends Persona{
 	private Esame[] Esami= new Esame[def];
 	// TODO private Esame[] EsamiSuperati = new Esame[def]
 	// 		private Esame[] EsamiPrenotati = new Esame[def];
-	// 		private String pwd;
+	// 		private String pwd; --> fornita dalla segreteria all'iscrizione, da cambiare al primo accesso --> changePwd()
 	private byte voto_finale;
 	private byte anno;
 	
@@ -45,14 +45,14 @@ public class Studente extends Persona{
 	public void set_voto_finale(byte voto_finale) {this.voto_finale = voto_finale;}
 	
 //Metodi
-	public boolean pianoStudi()
+	public boolean pianoStudi(CorsoLaurea corso)
 	{
 		byte i = 18;
 		boolean c = true;
 		
-		for(int j = 0; j<CorsoLaurea[k].get_ins_def().legth; j++)
+		for(int j = 0; j<corso.get_ins_def().length; j++)
 		{	
-			pianoStudi[j] = CorsoLaurea[k].get_ins_def()[j];
+			pianoStudi[j] = corso.get_ins_def()[j];
 		}
 		
 		while(i < pianoStudi.length && pianoStudi[i] != null)
@@ -61,7 +61,7 @@ public class Studente extends Persona{
 			
 			do {
 				
-				if(scegliMaterie())
+				if(scegliMaterie(corso))
 				{
 					System.out.println("---Operazione avvenuta con successo---");
 					c = false;
@@ -78,16 +78,16 @@ public class Studente extends Persona{
 		return false;
 	}
 
-	public boolean scegliMaterie()
+	public boolean scegliMaterie(CorsoLaurea corso)
 	{
 		System.out.println("Scegli materia da inserire: ");
 		Scanner input = new Scanner(System.in);
 		String a;
 		a = input.next();
 		
-		for(int i = 0; i < CorsoLaurea[K].get_ins_scl().length; i++)
+		for(int i = 0; i < corso.get_ins_scl().length; i++)
 		{		
-			if(CorsoLaurea[k].get_ins_scl()[i].get_nome().equals(a))
+			if(corso.get_ins_scl()[i].getNome().equals(a))
 			{
 				pianoStudi[i] = a;
 				return true;
@@ -96,16 +96,16 @@ public class Studente extends Persona{
 		return false;
 	}
 	
-	public boolean rimuoviMaterie()
+	public boolean rimuoviMaterie(CorsoLaurea corso)
 	{
 		System.out.println("Scegli materia da rimuovere: ");
 		Scanner input = new Scanner(System.in);
 		String b;
 		b = input.next();
 		
-		for(int p = 0; p<CorsoLaurea[K].get_ins_scl().length; p++)
+		for(int p = 0; p<corso.get_ins_scl().length; p++)
 		{
-			if(CorsoLaurea[k].get_ins_scl()[p].get_nome().equals(b))
+			if(corso.get_ins_scl()[p].getNome().equals(b))
 			{
 				pianoStudi[p] = null;
 				return true;
