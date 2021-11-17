@@ -28,6 +28,10 @@ public class Check {
 		}
 		return false;
 	}
+
+	public boolean isData(String data) {
+
+	}
 	
 	public static boolean isEmpty(Object[] obj) {
 		

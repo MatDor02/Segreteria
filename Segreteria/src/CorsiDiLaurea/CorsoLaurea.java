@@ -571,6 +571,7 @@ public class CorsoLaurea {
 						case 1: {
 							byte cont = 0;
 							do {
+								System.out.println();
 								for (Materia m : ins_def)
 									if(profLoggato.getMatricola().equals(m.getProf().getMatricola()))
 										System.out.println(++cont + ") " + m.getNome());
@@ -581,12 +582,12 @@ public class CorsoLaurea {
 								try {
 									scelta1 = input.nextByte();
 								} catch (InputMismatchException e) {
-									System.out.println("Hai i nserito '" + input.nextLine() + "', che non è un numero.");
+									System.out.println("\nHa inserito '" + input.nextLine() + "', che non è un numero.");
 									continue;
 								}
 								input.nextLine(); // prendo l'invio dopo il nextDouble andato a buon fine
 								if(scelta1 < 0 || scelta1 > cont)
-									System.out.println("Inserisci numeri compresi tra 0 e " + cont);
+									System.out.println("\nInserisca numeri compresi tra 0 e " + cont);
 								else {
 									if(scelta1 <= ins_def.length)
 										ins_def[scelta1 - 1].aggiungiEsame();

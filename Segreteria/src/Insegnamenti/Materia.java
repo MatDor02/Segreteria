@@ -3,6 +3,7 @@ import java.util.*;
 import Insegnamenti.Check;
 import Insegnamenti.Giorno.nomeGiorno;
 import Persone.*;
+import myExceptions.*;
 
 
 public class Materia {
@@ -52,7 +53,16 @@ public class Materia {
 	}
 
 	public void aggiungiEsame() {
+		Scanner input = new Scanner(System.in);
+		String data;
+		System.out.print("Che giorno sarà l'esame? [gg/mm/aa]: ");
+		try {
+			data = input.nextLine();
+			if(!Check.isData(data))
+				throw new DataFormatException;
+		} catch (DataFormatException e) {
 
+		}
 	}
 
 	// aggiunge un giorno all'orario
