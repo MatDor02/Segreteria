@@ -547,10 +547,11 @@ public class CorsoLaurea {
 		if(!login(matricola))
 			System.out.println("Tentativi esauriti, login non effettuato!");
 		else {
-			byte scelta = 99;
+			byte scelta = 99, scelta1 = 99;
 			do {
 				System.out.println("Cosa desidera fare?");
 				System.out.println("1) Aggiungere un esame");
+				System.out.println("2) Inserire il voto di uno studente per un esame");
 				System.out.println("0) Uscire");
 				System.out.print("Numero corrispondente alla scelta: ");
 				try {
@@ -568,6 +569,34 @@ public class CorsoLaurea {
 						case 0:
 							break;
 						case 1: {
+							byte cont = 0;
+							do {
+								for (Materia m : ins_def)
+									if(profLoggato.getMatricola().equals(m.getProf().getMatricola()))
+										System.out.println(++cont + ") " + m.getNome());
+								for (Materia m : ins_scl)
+									if(profLoggato.getMatricola().equals(m.getProf().getMatricola()))
+										System.out.println(++cont + ") " + m.getNome());
+								System.out.print("Scelga il numero affianco a uno dei suoi insegnamenti, oppure zero per uscire: ");
+								try {
+									scelta1 = input.nextByte();
+								} catch (InputMismatchException e) {
+									System.out.println("Hai i nserito '" + input.nextLine() + "', che non è un numero.");
+									continue;
+								}
+								input.nextLine(); // prendo l'invio dopo il nextDouble andato a buon fine
+								if(scelta1 < 0 || scelta1 > cont)
+									System.out.println("Inserisci numeri compresi tra 0 e " + cont);
+								else {
+									if(scelta1 <= ins_def.length)
+										ins_def[scelta1 - 1].aggiungiEsame();
+									else
+										ins_scl[scelta1 - 1 - ins_def.length].aggiungiEsame();
+								}
+
+							} while (scelta1 != 0);
+						}
+						case 2: {
 
 						}
 					}

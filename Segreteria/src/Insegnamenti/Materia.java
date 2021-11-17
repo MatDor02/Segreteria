@@ -14,11 +14,6 @@ public class Materia {
 	private GiornoLezione[] orario = new GiornoLezione[5];
 	private Vector <Esame> appelli = new Vector <Esame>();
 
-	public Materia(String nomeMateria, byte crediti) {
-		nome = nomeMateria;
-		cfu = crediti;
-	}
-
 	public Materia(String nomeMateria, byte crediti, Professore prof) {
 		nome = nomeMateria;
 		cfu = crediti;
@@ -44,8 +39,20 @@ public class Materia {
 		cfu = valore;
 	}
 
+	public Professore getProf() {
+		return prof;
+	}
+
+	public Esercitatore getEsercitatore() {
+		return coProf;
+	}
+
 	public Vector<Esame> getAppelli() {
 		return appelli;
+	}
+
+	public void aggiungiEsame() {
+
 	}
 
 	// aggiunge un giorno all'orario

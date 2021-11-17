@@ -16,4 +16,8 @@ public class Professore extends Persona {
 	public String getNome() {
 		return nome;
 	}
+
+	public String getMatricola() {
+		return matricola;
+	}
 }
