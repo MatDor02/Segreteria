@@ -1,9 +1,11 @@
 package Insegnamenti;
-import java.util.*;
 import Insegnamenti.Check;
 import Insegnamenti.Giorno.nomeGiorno;
 import Persone.*;
 import myExceptions.*;
+
+import java.util.*;
+import java.time.*;
 
 
 public class Materia {
@@ -54,15 +56,37 @@ public class Materia {
 
 	public void aggiungiEsame() {
 		Scanner input = new Scanner(System.in);
-		String data;
-		System.out.print("Che giorno sarà l'esame? [gg/mm/aa]: ");
-		try {
-			data = input.nextLine();
-			if(!Check.isData(data))
-				throw new DataFormatException;
-		} catch (DataFormatException e) {
+		LocalDate data = Esame.scegliData();
+		String orario;
+		boolean inCatch = false;
+		do {
+			System.out.print("\nOrario: ");
+			orario = input.nextLine();
+			try {
+				Check.orario(orario);
+			} catch (HourFormatException e) {
+				System.out.println(e.getMessage());
+				inCatch = true;
+			}
+		} while (inCatch);
 
-		}
+		boolean tooLong = false;
+		short durata = 0;
+		do {
+			System.out.print("\nDurata in minuti [MAX 150 minuti]: ");
+			try {
+				durata = input.nextShort();
+				if(durata > 150) {
+					System.out.println("Non puo' durare piu' di 150 minuti.");
+					tooLong = true;
+				}
+			} catch (InputMismatchException e) {
+				System.out.println(e);
+				tooLong = true;
+			}
+		} while(tooLong);
+
+		appelli.add(new Esame(nome, cfu, prof, data, orario, durata));
 	}
 
 	// aggiunge un giorno all'orario
