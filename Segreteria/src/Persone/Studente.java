@@ -139,11 +139,12 @@ public class Studente extends Persona{
 		{	
 			exam.setVoto((byte)voto);
 			CFU_acquisiti += exam.getCfu();
+
 			return true;
 		}
-		return false; 
+		return false;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Studente [matricola=" + matricola + ", CFU_acquisiti=" + CFU_acquisiti

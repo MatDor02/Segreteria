@@ -7,6 +7,7 @@ import java.util.Scanner;
 import Insegnamenti.*;
 import Insegnamenti.Giorno.nomeGiorno;
 import Persone.*;
+import myExceptions.HourFormatException;
 
 import javax.sound.midi.Soundbank;
 
@@ -20,8 +21,8 @@ public class CorsoLaurea {
 	private Materia[] ins_scl;
 	private Studente[] laureati = new Studente[200];
 	private Studente[] fuoricorso = new Studente[200];
-	// TODO private Steudente studLoggato;
-	// 		private Professore profLoggato;
+	// TODO private Studente studLoggato;
+	private Professore profLoggato;
 	Scanner input = new Scanner(System.in);
 	// ATTRIBUTI ORARIO
 	private static nomeGiorno day;
@@ -352,22 +353,31 @@ public class CorsoLaurea {
 			return nomeGiorno.getPosition((byte) (nGiorno - 1));
 		}
 
-		public static void scegliGiornoEOra () {
+		public static void scegliGiornoEOra() {
 			Scanner input = new Scanner(System.in);
 
-			day = scegliGiorno();
+			day = Giorno.scegliGiorno();
+			boolean inCatch = false;
 			do {
 				System.out.print("\nOrario di inizio [hh:mm]: ");
 				oraInizio = input.nextLine();
-				if (!Check.orario(oraInizio))
-					System.out.println("\nFormato orario non valido, riprova!");
-			} while (!Check.orario(oraInizio));
+				try {
+					Check.orario(oraInizio);
+				} catch (HourFormatException e) {
+					System.out.println(e.getMessage());
+					inCatch = true;
+				}
+			} while(inCatch);
 			do {
 				System.out.print("\nOrario di fine [hh:mm]: ");
 				oraFine = input.nextLine();
-				if (!Check.orario(oraFine))
-					System.out.println("\nFormato orario non valido, riprova!");
-			} while (!Check.orario(oraFine));
+				try {
+					Check.orario(oraFine);
+				} catch (HourFormatException e) {
+					System.out.println(e.getMessage());
+					inCatch = true;
+				}
+			} while(inCatch);
 		}
 
 // MENU'

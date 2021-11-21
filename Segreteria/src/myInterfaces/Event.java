@@ -1,10 +1,12 @@
 package myInterfaces;
 
+import java.time.*;
+
 public interface Event {
 
-    public String getData();
+    public LocalDate getData();
 
-    public void setData(String data);
+    public void setData(LocalDate data);
 
     public String getOrario();
 

@@ -3,6 +3,8 @@ package Insegnamenti;
 import java.util.*;
 
 import Insegnamenti.Giorno.nomeGiorno;
+import Persone.Professore;
+import myExceptions.HourFormatException;
 
 public class TestMateria {
 
@@ -13,7 +15,7 @@ public class TestMateria {
 		
 		Scanner input = new Scanner(System.in);
 		
-		Materia fisica = new Materia("fisica", (byte) 9);
+		Materia fisica = new Materia("fisica", (byte) 9, new Professore("Rouf"));
 		
 		do {
 			System.out.println("\nCosa vuoi fare?");
@@ -65,7 +67,7 @@ public class TestMateria {
 				break;
 			}
 			case 'r', 'R': {
-				nomeGiorno day = scegliGiorno();
+				nomeGiorno day = Giorno.scegliGiorno();
 				if(insegnamento.rimuoviGiorno(day))
 					System.out.println("\nGiorno di lezione rimosso!");
 				else
@@ -91,52 +93,32 @@ public class TestMateria {
 			}
 		} while(true);
 	}
-
-	public static nomeGiorno scegliGiorno() {
-		
-		Scanner input = new Scanner(System.in);
-		byte nGiorno = 1;
-		do {
-			if(nGiorno < 1 || nGiorno > 5)
-				System.out.println("\nInput non valido!");
-			
-			System.out.println("\nChe giorno? ");
-			System.out.println("1) Lunedi");
-			System.out.println("2) Martedi");
-			System.out.println("3) Mercoledi");
-			System.out.println("4) Giovedi");
-			System.out.println("5) Venerdi");
-			System.out.print("Inserisci il numero del giorno feriale: ");
-			
-			if(input.hasNextByte()) {
-				nGiorno = input.nextByte();
-				input.nextLine(); // raccolgo l'invio
-			}
-			else {
-				input.nextLine();
-				nGiorno = 0; //cosi reinizia il ciclo ed entro nel primo if
-			}
-		} while(nGiorno < 1 || nGiorno > 5);
-		
-		return nomeGiorno.getPosition((byte)(nGiorno - 1));
-	}
 	
 	public static void scegliGiornoEOra() {
 		Scanner input = new Scanner(System.in);
 		
-		day = scegliGiorno();
+		day = Giorno.scegliGiorno();
+		boolean inCatch = false;
 		do {
 			System.out.print("\nOrario di inizio [hh:mm]: ");
 			oraInizio = input.nextLine();
-			if(!Check.orario(oraInizio))
-				System.out.println("\nFormato orario non valido, riprova!");
-		} while(!Check.orario(oraInizio));
+			try {
+				Check.orario(oraInizio);
+			} catch (HourFormatException e) {
+				System.out.println(e.getMessage());
+				inCatch = true;
+			}
+		} while(inCatch);
 		do {
 			System.out.print("\nOrario di fine [hh:mm]: ");
 			oraFine = input.nextLine();
-			if(!Check.orario(oraFine))
-				System.out.println("\nFormato orario non valido, riprova!");
-		} while(!Check.orario(oraFine));
+			try {
+				Check.orario(oraFine);
+			} catch (HourFormatException e) {
+				System.out.println(e.getMessage());
+				inCatch = true;
+			}
+		} while(inCatch);
 	}
 	
 }
