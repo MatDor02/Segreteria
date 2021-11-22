@@ -69,22 +69,34 @@ public class myScanner {
 //    - message: the output message to print before asking the user for enter the number.
 //  Returns: the byte value requested.
     public byte nextByte(String message) {
-    boolean inCatch;
-    byte b = -1;
+        boolean inCatch;
+        byte b = -1;
 
-    do {
-        inCatch = false;
-        System.out.print(message);
-        try {
-            b = input.nextByte();
-        } catch (InputMismatchException e) {
-            System.err.println(e);
-            input.nextLine();
-            inCatch = true;
-        }
-    } while (inCatch);
+        do {
+            inCatch = false;
+            System.out.print(message);
+            try {
+                b = input.nextByte();
+            } catch (InputMismatchException e) {
+                System.err.println(e);
+                input.nextLine();
+                inCatch = true;
+            }
+        } while (inCatch);
 
-    return b;
-}
+        return b;
+    }
+
+    public String nextLine(String message) {
+        System.out.println(message);
+        String str = input.nextLine();
+        return str;
+    }
+
+    public String next(String message) {
+        System.out.println(message);
+        String str = input.next();
+        return str;
+    }
 
 }
