@@ -51,7 +51,7 @@ public class Esame extends Materia implements Event {
 			System.out.println("\nInserisca l'orario di inizio (prima l'ora, poi il minuto)");
 			ora = input.nextInt("\nOra: ");
 			minuto = input.nextInt("\nMinuto: ");
-
+			input.nextLine(""); // prendo l'invio dopo l'ultimo nextInt andato a buon fine
 			try {
 				dataEOra = LocalDateTime.of(anno, mese, giorno, ora, minuto);
 
@@ -81,9 +81,9 @@ public class Esame extends Materia implements Event {
 	}
 	
 	public String  toString() {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
-		return "Data: " + data.format(formatter) + " alle " + orario + "---|---" + "Nome: " + nome + " ---|--- " +
+		return "Data e ora: " + dataEOra.format(formatter) + "---|---" + "Nome: " + nome + " ---|--- " +
 				"Voto: " + voto + " ---|--- " + "CFU: " + cfu;
 	}
 }
