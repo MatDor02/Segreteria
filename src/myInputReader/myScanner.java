@@ -88,13 +88,13 @@ public class myScanner {
     }
 
     public String nextLine(String message) {
-        System.out.println(message);
+        System.out.print(message);
         String str = input.nextLine();
         return str;
     }
 
     public String next(String message) {
-        System.out.println(message);
+        System.out.print(message);
         String str = input.next();
         return str;
     }
