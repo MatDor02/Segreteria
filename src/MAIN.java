@@ -137,7 +137,8 @@ public class MAIN {
 					if(w == corsi.length)
 						System.out.println("Non esiste alcun corso con il nome inserito!");
 					else 
-						corsi[w].menu_corso();
+						//corsi[w].menu_corso();
+						gestioneMenu.menuCorsoLaurea(corsi[w]);
 					break;
 			case "U", "u":
 					t = false;

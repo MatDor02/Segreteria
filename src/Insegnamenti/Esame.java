@@ -51,6 +51,7 @@ public class Esame extends Materia implements Event {
 			System.out.println("\nInserisca l'orario di inizio (prima l'ora, poi il minuto)");
 			ora = input.nextInt("\nOra: ");
 			minuto = input.nextInt("\nMinuto: ");
+
 			input.nextLine(""); // prendo l'invio dopo l'ultimo nextInt andato a buon fine
 			try {
 				dataEOra = LocalDateTime.of(anno, mese, giorno, ora, minuto);
