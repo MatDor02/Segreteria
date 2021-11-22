@@ -1,60 +1,59 @@
 package Insegnamenti;
 
-import Persone.Professore;
+import Persone.*;
 import myInterfaces.Event;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import myInputReader.myScanner;
+import myInputReader.*;
 
 public class Esame extends Materia implements Event {
 
 	private byte cfu;
 	private byte voto;
 	private boolean superato;
-	private LocalDate data;
-	private String orario;
+	private LocalDateTime dataEOra;
 	private short durata; // in minuti
 	
-	public Esame(String nomeEsame, byte crediti, Professore prof, LocalDate data, String orario, short tempo) {
+	public Esame(String nomeEsame, byte crediti, Professore prof, LocalDateTime dataEOra, short durata) {
 		super(nomeEsame, crediti, prof);
-		durata = tempo;
-		this.data = data;
-		this.orario = orario;
+		this.durata = durata;
+		this.dataEOra = dataEOra;
 	}
 
-	public LocalDate getData() {
-		return data;
+	public LocalDateTime getDataEOra() {
+		return dataEOra;
 	}
 
-	public void setData(LocalDate data) {
-		this.data = data;
+	public void setDataEOra(LocalDateTime dataEOra) {
+		this.dataEOra = dataEOra;
 	}
 
-	public String getOrario() {
-		return orario;
-	}
-
-	public void setOrario(String orario) {
-		this.orario = orario;
-	}
-
-	public static LocalDate scegliData() {
+	public static LocalDateTime scegliDataEOra() {
 		myScanner input = new myScanner(System.in);
-		LocalDate data = null;
-		int giorno, mese, anno;
+		LocalDateTime dataEOra = null;
+		int giorno, mese, anno, ora, minuto;
 		boolean inCatch;
 		do {
 			inCatch = false;
-			System.out.print("\nScegliere la data. ");
-			anno = input.nextInt("\nAnno: ");
+			System.out.print("\nScelga la data. ");
+			do {
+				anno = input.nextInt("\nAnno: ");
+				if(anno != 2021 && anno != 2022)
+					System.out.println("\nAnno non valido.");
+			} while (anno != 2021 && anno != 2022);
+
 			mese = input.nextInt("\nMese: ");
 			giorno = input.nextInt(("\nGiorno: "));
 
+			System.out.println("\nInserisca l'orario di inizio (prima l'ora, poi il minuto)");
+			ora = input.nextInt("\nOra: ");
+			minuto = input.nextInt("\nMinuto: ");
+
 			try {
-				data = LocalDate.of(anno, mese, giorno);
+				dataEOra = LocalDateTime.of(anno, mese, giorno, ora, minuto);
 
 			} catch (DateTimeException e) {
 				System.out.println(e.getMessage());
@@ -62,7 +61,7 @@ public class Esame extends Materia implements Event {
 			}
 		} while (inCatch);
 
-		return data;
+		return dataEOra;
 	}
 	
 	public byte getVoto() {

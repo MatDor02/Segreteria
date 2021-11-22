@@ -56,19 +56,7 @@ public class Materia {
 
 	public void aggiungiEsame() {
 		Scanner input = new Scanner(System.in);
-		LocalDate data = Esame.scegliData();
-		String orario;
-		boolean inCatch = false;
-		do {
-			System.out.print("\nOrario: ");
-			orario = input.nextLine();
-			try {
-				Check.orario(orario);
-			} catch (HourFormatException e) {
-				System.out.println(e.getMessage());
-				inCatch = true;
-			}
-		} while (inCatch);
+		LocalDateTime dataEOra = Esame.scegliDataEOra();
 
 		boolean tooLong = false;
 		short durata = 0;
@@ -86,7 +74,7 @@ public class Materia {
 			}
 		} while(tooLong);
 
-		appelli.add(new Esame(nome, cfu, prof, data, orario, durata));
+		appelli.add(new Esame(nome, cfu, prof, dataEOra, durata));
 	}
 
 	// aggiunge un giorno all'orario

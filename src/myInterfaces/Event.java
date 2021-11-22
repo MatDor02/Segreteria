@@ -4,11 +4,8 @@ import java.time.*;
 
 public interface Event {
 
-    public LocalDate getData();
+    public LocalDateTime getDataEOra();
 
-    public void setData(LocalDate data);
+    public void setDataEOra(LocalDateTime dataEOra);
 
-    public String getOrario();
-
-    public void setOrario(String orario);
 }
