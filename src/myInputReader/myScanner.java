@@ -31,6 +31,7 @@ public class myScanner {
                 i = input.nextInt();
             } catch (InputMismatchException e) {
                 System.err.println(e);
+                input.nextLine();
                 inCatch = true;
             }
         } while (inCatch);
@@ -54,6 +55,7 @@ public class myScanner {
                 d = input.nextDouble();
             } catch (InputMismatchException e) {
                 System.err.println(e);
+                input.nextLine();
                 inCatch = true;
             }
         } while (inCatch);
@@ -77,6 +79,7 @@ public class myScanner {
             b = input.nextByte();
         } catch (InputMismatchException e) {
             System.err.println(e);
+            input.nextLine();
             inCatch = true;
         }
     } while (inCatch);
