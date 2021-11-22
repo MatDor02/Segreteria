@@ -87,12 +87,18 @@ public class myScanner {
         return b;
     }
 
+//  Parameters:
+//    - message: the string to output before getting the next line
+//  Returns: the classic nextLine of the Scanner
     public String nextLine(String message) {
         System.out.print(message);
         String str = input.nextLine();
         return str;
     }
 
+//  Parameters:
+//    - message: the string to output before getting the next complete token from the Scanner
+//  Returns: the classic next of the Scanner
     public String next(String message) {
         System.out.print(message);
         String str = input.next();
