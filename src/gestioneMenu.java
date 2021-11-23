@@ -38,7 +38,7 @@ public class gestioneMenu {
                 try {
                     scelta = input.nextByte();
                 } catch (InputMismatchException e) {
-                    System.out.println("\nHai inserito '" + input.nextLine() + "', che non è un numero.");
+                    System.out.println("\nHai inserito '" + input.nextLine() + "', che non e' un numero.");
                     continue;
                 }
                 input.nextLine();// prendo l'invio dopo il netByte andato a buon fine
@@ -87,7 +87,7 @@ public class gestioneMenu {
                 try {
                     scelta = input.nextByte();
                 } catch (InputMismatchException e) {
-                    System.out.println("\nHai inserito '" + input.nextLine() + "', che non è un numero.");
+                    System.out.println("\nHai inserito '" + input.nextLine() + "', che non e' un numero.");
                     continue;
                 }
                 input.nextLine();// prendo l'invio dopo il netByte andato a buon fine
@@ -134,7 +134,7 @@ public class gestioneMenu {
                 if(scelta < 0 || scelta > cont)
                     throw new IndexOutOfBoundsException("\nInserisca numeri compresi tra 0 e " + cont);
             } catch (InputMismatchException e) {
-                System.out.println("\nHa inserito '" + input.nextLine() + "', che non è un numero.");
+                System.out.println("\nHa inserito '" + input.nextLine() + "', che non e' un numero.");
                 inCatch = true;
                 continue;
             } catch (IndexOutOfBoundsException e) {
