@@ -14,7 +14,7 @@ public class MAIN {
 		Scanner input = new Scanner(System.in);
 		if(CorsoLaurea.vett_pieno(corsi))
 		{
-			System.out.println("Non è possibile aggiungere corsi si laurea!");
+			System.out.println("Non ï¿½ possibile aggiungere corsi si laurea!");
 			return false;
 		}
 		boolean c = true;
@@ -53,7 +53,7 @@ public class MAIN {
 		}
 		if(!c)
 		{
-			System.out.println("Non è possibile rimuovere corsi di laurea!");
+			System.out.println("Non ï¿½ possibile rimuovere corsi di laurea!");
 			return false;
 		}
 		boolean r = true; 
@@ -87,7 +87,7 @@ public class MAIN {
 	}
 
 	// TODO public void menuStudente()
-	// 		login (scorro vettore studenti finchè non combaciano credenziali)
+	// 		login (scorro vettore studenti finchï¿½ non combaciano credenziali)
 	// 		opzioni: prenotaEsame (stampa le materie del piano di studi, ne fa scegliere una e stampa i relativi appelli.
 	//							   Selezionare quello a cui iscriversi e passarlo a studenteAttuale.prenotaEsame())
 	
@@ -99,7 +99,7 @@ public class MAIN {
 	
 		do {
 			System.out.println("Benvenuto/a!");
-			System.out.println("Qunati corsi può ospitare l'ateneo?");
+			System.out.println("Qunati corsi puï¿½ ospitare l'ateneo?");
 			n_corsi = input.nextByte();
 			corsi = new CorsoLaurea[n_corsi];
 			ins_corso(corsi);
@@ -107,7 +107,7 @@ public class MAIN {
 			System.out.println("MENU COMANDI:");
 			System.out.println("A) aggiungi corso");
 			System.out.println("E) elimina corso");
-			System.out.println("M) apri menù corso");
+			System.out.println("M) apri menï¿½ corso");
 			System.out.println("U) esci dal programma");
 			System.out.print("Scelta:\n--> ");
 			String scelta = input.next();
