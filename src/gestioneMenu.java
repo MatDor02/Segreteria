@@ -93,41 +93,17 @@ public class gestioneMenu {
                 input.nextLine();// prendo l'invio dopo il netByte andato a buon fine
 
                 if(scelta < 0 || scelta > 1)
-                    System.out.println("Inserisci numeri compresi tra 0 e 1");
+                    System.out.println("\nInserisci numeri compresi tra 0 e 1");
                 else {
                     switch (scelta) {
                         case 0:
                             break;
                         case 1: {
-                            byte cont = 0;
-                            do {
-                                System.out.println();
-                                for (Materia m : ins_def)
-                                    if(profLoggato.getMatricola().equals(m.getProf().getMatricola()))
-                                        System.out.println(++cont + ") " + m.getNome());
-                                for (Materia m : ins_scl)
-                                    if(profLoggato.getMatricola().equals(m.getProf().getMatricola()))
-                                        System.out.println(++cont + ") " + m.getNome());
-                                System.out.print("Scelga il numero affianco a uno dei suoi insegnamenti, oppure zero per uscire: ");
-                                try {
-                                    scelta1 = input.nextByte();
-                                } catch (InputMismatchException e) {
-                                    System.out.println("\nHa inserito '" + input.nextLine() + "', che non è un numero.");
-                                    continue;
-                                }
-                                input.nextLine(); // prendo l'invio dopo il nextDouble andato a buon fine
-                                if(scelta1 < 0 || scelta1 > cont)
-                                    System.out.println("\nInserisca numeri compresi tra 0 e " + cont);
-                                else {
-                                    if(scelta1 <= ins_def.length)
-                                        ins_def[scelta1 - 1].aggiungiEsame();
-                                    else
-                                        ins_scl[scelta1 - 1 - ins_def.length].aggiungiEsame();
-                                }
-
-                            } while (scelta1 != 0);
+                            Materia materiaScelta = scegliMateriaProf(corso);
+                            materiaScelta.aggiungiEsame();
                         }
                         case 2: {
+                            Materia materiaScelta = scegliMateriaProf(corso);
 
                         }
                     }
@@ -137,9 +113,48 @@ public class gestioneMenu {
         }
     }
 
-//    TODO: controlliamo password (basandoci sulla matricola inserita)
-//     		Se studente, assegnamo a "studLoggto" lo studente con le credenziali corrispondenti
-//    		Se professore, assegnamo a profLoggato
+    private static Materia scegliMateriaProf(CorsoLaurea corso) {
+        Scanner input = new Scanner(System.in);
+        byte scelta = -1;
+        byte cont;
+        boolean inCatch;
+        do {
+            cont = 0;
+            inCatch = false;
+            System.out.println();
+            for (Materia m : corso.get_ins_def())
+                if(profLoggato.getMatricola().equals(m.getProf().getMatricola()))
+                    System.out.println(++cont + ") " + m.getNome());
+            for (Materia m : corso.get_ins_scl())
+                if(profLoggato.getMatricola().equals(m.getProf().getMatricola()))
+                    System.out.println(++cont + ") " + m.getNome());
+            System.out.print("Scelga il numero affianco a uno dei suoi insegnamenti, oppure zero per uscire: ");
+            try {
+                scelta = input.nextByte();
+                if(scelta < 0 || scelta > cont)
+                    throw new IndexOutOfBoundsException("\nInserisca numeri compresi tra 0 e " + cont);
+            } catch (InputMismatchException e) {
+                System.out.println("\nHa inserito '" + input.nextLine() + "', che non è un numero.");
+                inCatch = true;
+                continue;
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println(e.getMessage());
+                inCatch = true;
+                continue;
+            }
+            input.nextLine(); // prendo l'invio dopo il nextDouble andato a buon fine
+
+        } while (inCatch);
+
+        if (scelta <= corso.get_ins_def().length)
+            return corso.get_ins_def()[scelta - 1];
+        else
+            return corso.get_ins_scl()[scelta - 1 - corso.get_ins_def().length];
+    }
+
+//  TODO: controlliamo password (basandoci sulla matricola inserita)
+//  	  Se studente, assegnamo a "studLoggto" lo studente con le credenziali corrispondenti
+//     	  Se professore, assegnamo a profLoggato
     private static boolean login(String matricola, CorsoLaurea corso) {
         //corso serve ad accedere ai vettori di studenti o di professori
     }
