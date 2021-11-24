@@ -1,26 +1,48 @@
 package Insegnamenti;
 
 import Persone.*;
+import myExceptions.InvalidDateException;
 import myInterfaces.Event;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.Vector;
+
 import myInputReader.*;
 
 public class Esame extends Materia implements Event {
 
-	private byte cfu;
-	private byte voto;
+	private byte voto, cfu;
 	private boolean superato;
 	private LocalDateTime dataEOra;
 	private short durata; // in minuti
+	private Vector<Studente> studenti = new Vector<Studente>();
+
 	
 	public Esame(String nomeEsame, byte crediti, Professore prof, LocalDateTime dataEOra, short durata) {
 		super(nomeEsame, crediti, prof);
 		this.durata = durata;
 		this.dataEOra = dataEOra;
+	}
+
+	public byte getVoto() {
+		return voto;
+	}
+
+	public void setVoto (byte valutazione) {
+
+		if(valutazione >= 18) {
+			voto = valutazione;
+			superato = true;
+		}
+		else
+			voto = -1;
+	}
+
+	public boolean isSuperato() {
+		return superato;
 	}
 
 	public LocalDateTime getDataEOra() {
@@ -55,8 +77,13 @@ public class Esame extends Materia implements Event {
 			input.nextLine(""); // prendo l'invio dopo l'ultimo nextInt andato a buon fine
 			try {
 				dataEOra = LocalDateTime.of(anno, mese, giorno, ora, minuto);
+				if (dataEOra.compareTo(LocalDateTime.now()) <= 0)
+					throw new InvalidDateException("\nData non valida: non è una data futura.");
 
 			} catch (DateTimeException e) {
+				System.out.println(e.getMessage());
+				inCatch = true;
+			} catch (InvalidDateException e) {
 				System.out.println(e.getMessage());
 				inCatch = true;
 			}
@@ -64,27 +91,34 @@ public class Esame extends Materia implements Event {
 
 		return dataEOra;
 	}
-	
-	public byte getVoto() {
-		return voto;
+
+	public Vector<Studente> getStudenti() {
+		return studenti;
 	}
-	
-	public boolean isSuperato() {
-		return superato;
+	public void aggiungiStudente(Studente stud) {
+		studenti.add(stud);
 	}
-	
-	public void setVoto (byte valutazione) {
-		
-		if(valutazione >= 18) {
-			voto = valutazione;
-			superato = true;
-		} //altrimenti restano al valore di default, cioe' voto e' 0, isSuperato e' false
+
+	public boolean equals(Object o) {
+		if(!(o instanceof Esame))
+			return false;
+		if (this == o)
+			return true;
+		Esame esame = (Esame) o;
+		return nome.equals(esame.getNome()) && dataEOra.equals(esame.getDataEOra());
 	}
-	
+
 	public String  toString() {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
-		return "Data e ora: " + dataEOra.format(formatter) + "---|---" + "Nome: " + nome + " ---|--- " +
-				"Voto: " + voto + " ---|--- " + "CFU: " + cfu;
+		String str = "Data e ora: " + dataEOra.format(formatter) + " ---|--- " + "Nome: " + nome + " ---|--- " +
+					 "CFU: " + cfu;
+		if(voto !=  0) {
+			if(voto == -1)
+				str.concat(" ---|--- Voto: insufficiente");
+			else
+				str.concat(" ---|--- Voto: " + voto);
+		}
+		return str;
 	}
 }

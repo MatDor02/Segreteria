@@ -61,11 +61,11 @@ public class Materia {
 		boolean tooLong = false;
 		short durata = 0;
 		do {
-			System.out.print("\nDurata in minuti [MAX 150 minuti]: ");
+			System.out.print("\nDurata in minuti [MIN 30, MAX 150]: ");
 			try {
 				durata = input.nextShort();
-				if(durata > 150) {
-					System.out.println("Non puo' durare piu' di 150 minuti.");
+				if(durata < 30 || durata > 150) {
+					System.out.println("\nDurata non valida: l'esame può durare da 30 a 150 minuti.");
 					tooLong = true;
 				}
 			} catch (InputMismatchException e) {
@@ -75,6 +75,8 @@ public class Materia {
 		} while(tooLong);
 
 		appelli.add(new Esame(nome, cfu, prof, dataEOra, durata));
+
+		//TODO: ordinare il vettore di appelli in ordine di data
 	}
 
 	// aggiunge un giorno all'orario

@@ -13,9 +13,9 @@ public class Studente extends Persona{
 	private byte CFU_acquisiti;
 	//private Materia[] Esami = new Materia[def];
 	private Esame[] Esami= new Esame[def];
-	// TODO private Esame[] EsamiSuperati = new Esame[def]
-	// 		private Esame[] EsamiPrenotati = new Esame[def];
-	// 		private String pwd; --> fornita dalla segreteria all'iscrizione, da cambiare al primo accesso --> changePwd()
+	// TODO: private Esame[] EsamiSuperati = new Esame[def]
+	// 		 private Esame[] EsamiPrenotati = new Esame[def];
+	// 		 private String pwd; --> fornita dalla segreteria all'iscrizione, da cambiare al primo accesso --> changePwd()
 	private byte voto_finale;
 	private byte anno;
 	
