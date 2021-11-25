@@ -164,8 +164,7 @@ public class gestioneMenu {
                                     if(e.equals(ultimoAppello) && !e.isSuperato())
                                         e.setVoto(voto);
                             }
-
-
+                            
                         }
                     }
                 }
