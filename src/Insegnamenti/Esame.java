@@ -69,10 +69,6 @@ public class Esame extends Materia implements Event {
 		return voto;
 	}
 	
-	public boolean isSuperato() {
-		return superato;
-	}
-	
 	public void setVoto (byte valutazione) {
 		
 		if(valutazione >= 18) {
