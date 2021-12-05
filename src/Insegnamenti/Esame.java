@@ -68,6 +68,10 @@ public class Esame extends Materia implements Event {
 	public byte getVoto() {
 		return voto;
 	}
+
+	public boolean isSuperato() {
+		return superato;
+	}
 	
 	public void setVoto (byte valutazione) {
 		
